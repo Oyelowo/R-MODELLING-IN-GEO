@@ -1,0 +1,67 @@
+{rep<-1
+cryo_auc_glm<-cryo_auc_glm2<-c()
+for (i in 1:rep){
+    print(i)
+    rand_sam<-sample(1:nrow(data), size = 0.7*nrow(data) )
+    cal<- data[rand_sam,]
+    eva<- data[-rand_sam,]
+    
+    cryo_glm <- glm(Cryoturb~ RR_annual+ Slope +  I(Slope^2),data=data, family = "binomial")
+    pred_cryo_glm<-predict.glm(cryo_glm, newdata = eva, type = "response")
+
+    cryo_auc_glm_p<-colAUC(pred_cryo_glm, eva$Cryoturb, plotROC=T)}}
+    cryo_auc_glm <- c(cryo_auc_glm, cryo_auc_glm_p[[1]])
+    
+    
+    cryo_glm2 <- glm(Cryoturb~ Tavg_7+ RR_annual+ Slope +  I(Slope^2),data=data, family = "poisson")
+    pred_cryo_glm2<-predict.glm(cryo_glm2, newdata = eva, type = "response")
+    
+    
+    cryo_auc_glm_p2<-colAUC(pred_cryo_glm2, eva$Cryoturb, plotROC=T)
+    cryo_auc_glm2 <- c(cryo_auc_glm2, cryo_auc_glm_p2[[1]])
+    }
+compared_model_cryo=cbind.data.frame(cryo_auc_glm, cryo_auc_glm2)
+}
+
+compared_model_cryo
+
+wilcox.test(mean(compared_model_cryo[,1]), mean(compared_model_cryo[,2]))
+
+
+
+
+
+correlation for chekcing if Tavg_7 significantly improves the prediction of Cryoturbation.
+I concluded that it did not improve the prediction, hence, not necessary.
+
+
+
+{rep<10
+cryo_cor_glm<-cryo_cor_glm2<-c()
+for (i in 1:rep){
+    print(i)
+    rand_sam<-sample(1:nrow(data), size = 0.7*nrow(data) )
+    cal<- data[rand_sam,]
+    eva<- data[-rand_sam,]
+    
+    cryo_glm <- glm(Cryoturb~ RR_annual+ Slope +  I(Slope^2),data=data, family = "poisson")
+    pred_cryo_glm<-predict.glm(cryo_glm, newdata = eva, type = "response")
+
+    cryo_cor_glm<-cor(pred_cryo_glm, eva$Cryoturb, method = "spearman")
+    
+     
+    
+    cryo_glm2 <- glm(Cryoturb~ Tavg_7+ RR_annual+ Slope +  I(Slope^2),data=data, family = "poisson")
+    pred_cryo_glm2<-predict.glm(cryo_glm2, newdata = eva, type = "response")
+    
+    
+    cryo_cor_glm2<-cor(pred_cryo_glm2, eva$Cryoturb, method = "spearman")
+   
+    }
+compared_model_cryo=cbind.data.frame(cryo_cor_glm, cryo_cor_glm2)
+}
+
+compared_model_cryo
+
+wilcox.test(mean(compared_model_cryo[,1]), mean(compared_model_cryo[,2]))
+

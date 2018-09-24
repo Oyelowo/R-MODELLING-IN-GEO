@@ -1,0 +1,141 @@
+{replicate(1000,
+b <- function(d){
+sam <- sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+m <- lm(temp~elev+sea,data=d[sam,]) # fit a linear regression model
+return(coef(m)[2]) # return estimated coefficients. Use "[]" -syntax to extract specific model
+# coefficient
+})}
+{replicate(1000,
+b <- function(d=data){
+sam <- sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+m <- lm(temp~elev+sea,data=d[sam,]) # fit a linear regression model
+return(coef(m)[2]) # return estimated coefficients. Use "[]" -syntax to extract specific model
+# coefficient
+})}
+data<- read.csv("C:/Users/oyeda/Desktop/MODELLING_PHYSICAL_GEOGRAPHY/assignment2/Data-20171114/AirTemperatureData.csv", header=T, sep = ";")
+{replicate(1000,
+b <- function(d=data){
+sam <- sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+m <- lm(temp~elev+sea,data=d[sam,]) # fit a linear regression model
+return(coef(m)[2]) # return estimated coefficients. Use "[]" -syntax to extract specific model
+# coefficient
+})}
+b <- function(d){
+sam <- sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+m <- lm(temp~elev+sea,data=d[sam,]) # fit a linear regression model
+return(coef(m)[2]) # return estimated coefficients. Use "[]" -syntax to extract specific model
+# coefficient
+}
+replicate(1000, b(d=data))
+b <- function(d,y,x,f){
+sam <- sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+m <- lm(y~x+f,data=d[sam,]) # fit a linear regression model
+return(coef(m)[2]) # return estimated coefficients. Use "[]" -syntax to extract specific model
+# coefficient
+}
+replicate(1000, b(d=data, y=temp, x=elev, f=sea))
+b <- function(d,y,x){
+sam <- sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+m <- lm(y~x,data=d[sam,]) # fit a linear regression model
+return(coef(m)[2]) # return estimated coefficients. Use "[]" -syntax to extract specific model
+# coefficient
+}
+replicate(1000, b(d=data, y=temp, x=elev+sea))
+sample(1:5)
+sample(1:5, replace = T)
+sample(1:5, replace = T)
+coef_elev <- function(d){
+sam <- sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+lm_temp <- lm(temp~elev+sea,data=d[sam,]) # fit a linear regression model
+return(coef(lem_elev)[2]) # return estimated coefficients. Use "[]" -syntax to extract specific model
+# coefficient
+}
+replicate(1000, expr=coef_elev(d=data))
+coef_elev <- function(d){
+sam <- sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+lm_temp <- lm(temp~elev+sea,data=d[sam,]) # fit a linear regression model
+return(coef(lm_elev)[2]) # return estimated coefficients. Use "[]" -syntax to extract specific model
+# coefficient
+}
+replicate(1000, expr=coef_elev(d=data))
+coef_elev <- function(d){
+sam <- sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+lm_temp <- lm(temp~elev+sea,data=d[sam,]) # fit a linear regression model
+return(coef(lm_temp)[2]) # return estimated coefficients. Use "[]" -syntax to extract specific model
+# coefficient
+}
+replicate(1000, expr=coef_elev(d=data))
+replicate(1000, coef_elev(d=data))
+coef_elev <- function(d){
+sam <- sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+lm_temp <- lm(temp~elev+sea,data=d[sam,]) # fit a linear regression model
+return(coef(lm_temp)[2]) # return estimated coefficients. Use "[]" -syntax to extract specific model
+# coefficient
+}
+replicate(1000, coef_elev(d=data))
+b <- function(d){
+sam <- sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+lm_elev <- lm(temp~elev+sea,data=d[sam,]) # fit a linear regression model
+return(coef(m)[2]) # return estimated coefficients. Use "[]" -syntax to extract specific model
+# coefficient
+}
+replicate(1000, b(d=data))
+b <- function(d){
+sam <- sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+m <- lm(temp~elev+sea,data=d[sam,]) # fit a linear regression model
+return(coef(m)[2]) # return estimated coefficients. Use "[]" -syntax to extract specific model
+# coefficient
+}
+replicate(1000, b(d=data))
+summary(lm_temp)
+coef_elev <- function(d){
+sam <- sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+lm_temp <- lm(temp~elev+sea,data=d[sam,]) # fit a linear regression model
+summary(lm_temp)
+return(coef(lm_temp)[2]) # return estimated coefficients. Use "[]" -syntax to extract specific model
+# coefficient
+}
+replicate(1000, coef_elev(d=data))
+rep_coef_elev<-replicate(1000, coef_elev(d=data))
+hist(rep_coef_elev)
+conf<- quantile(rep_coef_elev, probs = c(0.25,0.975))
+abline(v=conf, col="red")
+abline(v=conf, lty=4, col="red")
+png(filename="C:/Users/oyeda/Desktop/MODELLING_PHYSICAL_GEOGRAPHY/assignment2/Data-20171114/hist_elev_coef.png")
+dev.off()
+hist(rep_coef_elev)
+conf<- quantile(rep_coef_elev, probs = c(0.25,0.975))
+abline(v=conf, lty=4, col="red")
+png(filename="C:/Users/oyeda/Desktop/MODELLING_PHYSICAL_GEOGRAPHY/assignment2/Data-20171114/hist_elev_coef.png")
+dev.off()
+png(filename="C:/Users/oyeda/Desktop/MODELLING_PHYSICAL_GEOGRAPHY/assignment2/Data-20171114/hist_elev_coef.png")
+hist(rep_coef_elev)
+conf<- quantile(rep_coef_elev, probs = c(0.25,0.975))
+abline(v=conf, lty=4, lwd=3, col="red")
+dev.off()
+hist(rep_coef_elev, xlab = "Elevation Slope")
+rep_coef_elev<-replicate(1000, coef_elev(d=data))
+hist(rep_coef_elev, xlab = "Elevation Slope")
+rep_coef_elev<-replicate(1000, coef_elev(d=data))
+png(filename="C:/Users/oyeda/Desktop/MODELLING_PHYSICAL_GEOGRAPHY/assignment2/Data-20171114/hist_elev_coef.png")
+hist(rep_coef_elev, xlab = "Elevation Slope")
+conf<- quantile(rep_coef_elev, probs = c(0.25,0.975))
+abline(v=conf, lty=4, lwd=3, col="red")
+dev.off()
+rep_coef_elev<-replicate(1000, coef_elev(d=data))
+png(filename="C:/Users/oyeda/Desktop/MODELLING_PHYSICAL_GEOGRAPHY/assignment2/Data-20171114/hist_elev_coef.png")
+hist(rep_coef_elev, xlab = "Elevation Slope")
+conf<- quantile(rep_coef_elev, probs = c(0.25,0.975))
+abline(v=conf, lty=4, lwd=3, col="red")
+rep_coef_elev<-replicate(1000, coef_elev(d=data))
+png(filename="C:/Users/oyeda/Desktop/MODELLING_PHYSICAL_GEOGRAPHY/assignment2/Data-20171114/hist_elev_coef.png")
+hist(rep_coef_elev, xlab = "Elevation Slope")
+hist(rep_coef_elev)
+hist(rep_coef_elev)
+rep_coef_elev<-replicate(1000, coef_elev(d=data))
+png(filename="C:/Users/oyeda/Desktop/MODELLING_PHYSICAL_GEOGRAPHY/assignment2/Data-20171114/hist_elev_coef.png")
+hist(rep_coef_elev, xlab = "Elevation Slope")
+rep_coef_elev<-replicate(1000, coef_elev(d=data))
+png(filename="C:/Users/oyeda/Desktop/MODELLING_PHYSICAL_GEOGRAPHY/assignment2/Data-20171114/hist_elev_coef.png")
+hist(rep_coef_elev, xlab = "Elevation Slope")
+hist(rep_coef_elev, xlab = "Elevation Slope")

@@ -1,0 +1,512 @@
+sam <- replicate(999, expr=sample(d$elev, replace = TRUE)) # draw a bootstrap sample
+sam <- replicate(999, expr=sample(dada$elev, replace = TRUE)) # draw a bootstrap sample
+sam <- replicate(999, expr=sample(data$elev, replace = TRUE)) # draw a bootstrap sample
+sam''
+sam
+bs_lm <- function(y,x,d){
+sam <- replicate(1000, expr=coef(sample(data$elev, replace = TRUE))) # draw a bootstrap sample
+sm <- lm(y~x,data=d[sam,]) # fit a linear regression model
+return(coef(m)) }# return estimated coefficients.
+bs_lm(y=temp,x=elev+sea, d= data)
+bs_lm <- function(y,x,d){
+sam <- replicate(1000, expr=coef(sample(d$elev, replace = TRUE))) # draw a bootstrap sample
+sm <- lm(y~x,data=d[sam,]) # fit a linear regression model
+return(coef(m)) }# return estimated coefficients.
+bs_lm <- function(y,x,d){
+sam <- replicate(1000, expr=coef(sample(d$elev, replace = TRUE))) # draw a bootstrap sample
+m <- lm(y~x,data=d[sam,]) # fit a linear regression model
+return(coef(m)) }# return estimated coefficients.
+bs_lm(y=temp,x=elev+sea, d= data)
+bs_lm <- function(y,x,d){
+sam <- replicate(1000, expr=sample(d$elev, replace = TRUE)) # draw a bootstrap sample
+m <- lm(y~x,data=d[sam,]) # fit a linear regression model
+return(coef(m)) }# return estimated coefficients.
+bs_lm(y=temp,x=elev+sea, d= data)
+bs_lm <- function(y,x,h,d){
+sam <- replicate(1000, expr=sample(d$elev, replace = TRUE)) # draw a bootstrap sample
+m <- lm(y~x+h,data=d[sam,]) # fit a linear regression model
+return(coef(m)) }# return estimated coefficients.
+bs_lm(y=temp,x=elev, h=sea, d= data)
+bs_lm <- function(y,x,h,d){
+sam <- replicate(1000, expr=sample(d$elev, replace = TRUE)) # draw a bootstrap sample
+m <- lm(y~x+h,data=d[sam,]) # fit a linear regression model
+return(coef(m)) }# return estimated coefficients.
+bs_lm(y=temp,x=elev, h=sea, d= data)
+data<- read.csv("C:/Users/oyeda/Desktop/MODELLING_PHYSICAL_GEOGRAPHY/assignment2/Data-20171114/AirTemperatureData.csv", header=T, sep = ";")
+bs_lm <- function(y,x,h,d){
+sam <- replicate(1000, expr=sample(d$elev, replace = TRUE)) # draw a bootstrap sample
+m <- lm(y~x+h,data=d[sam,]) # fit a linear regression model
+return(coef(m)) }# return estimated coefficients.
+bs_lm(y=temp,x=elev, h=sea, d= data)
+bs_lm <- function(y,x,h,d){
+sam <- replicate(1000, expr=sample(d$elev, replace = TRUE)) # draw a bootstrap sample
+m <- lm(y~x+h,data=d[sam,]) # fit a linear regression model
+return(coef(m)) }# return estimated coefficients.
+bs_lm(y=temp,x=elev, h=sea, d= data)
+bs_lm <- function(y,x,h,d){
+sam <- replicate(1000, expr=sample(nrow(d), replace = TRUE)) # draw a bootstrap sample
+m <- lm(y~x+h,data=d[sam,]) # fit a linear regression model
+return(coef(m)) }# return estimated coefficients.
+bs_lm(y=temp,x=elev, h=sea, d= data)
+bs_lm <- function(y,x,h,d){
+sam <- sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+m <- lm(y~x+h,data=d[sam,]) # fit a linear regression model
+return(coef(m)) }# return estimated coefficients.
+bs_lm(y=temp,x=elev, h=sea, d= data)
+data<- read.csv("C:/Users/oyeda/Desktop/MODELLING_PHYSICAL_GEOGRAPHY/assignment2/Data-20171114/AirTemperatureData.csv", header=T, sep = ";")
+data<- read.csv("C:/Users/oyeda/Desktop/MODELLING_PHYSICAL_GEOGRAPHY/assignment2/Data-20171114/AirTemperatureData.csv", header=T, sep = ";")
+View(data)
+View(data)
+bs_lm <- function(y,x,h,d){
+sam <- sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+m <- lm(y~x+h,data=d[sam,]) # fit a linear regression model
+return(coef(m)) }# return estimated coefficients.
+bs_lm(y=temp,x=elev, h=sea, d= data)
+bs_lm <- function(y,x,d){
+sam <- sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+m <- lm(y~x,data=d[sam,]) # fit a linear regression model
+return(coef(m)) }# return estimated coefficients.
+bs_lm(y=temp,x=elev+sea, d= data)
+xx<-bs_lm(y=temp,x=elev+sea, d= data)
+xx
+xx(1)
+xx[1]
+xx[2]
+conf_elev<- quantile(xx[2], probs = c(0.25,0.975))
+hist(xx[2])
+hist(xx[2], 6)
+hist(xx)
+lm(temp~elev+sea, data=data)
+vv<-lm(temp~elev+sea, data=data)
+summary(vv)
+bs_lm <- function(y,x,d){
+sam <- sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+m <- lm(y~x,data=d[sam,]) # fit a linear regression model
+return(coef(m)) }# return estimated coefficients.
+xx<-bs_lm(y=temp,x=elev, d= data)
+hist(xx)
+hist(bs_lm)
+hist(xx)
+library(boot)
+# function to obtain R-Squared from the data
+rsq <- function(formula, data, indices) {
+d <- data[indices,] # allows boot to select sample
+fit <- lm(formula, data=d)
+return(summary(fit)$r.square)
+}
+# bootstrapping with 1000 replications
+results <- boot(data=data, statistic=rsq,
+R=1000, formula=temp~elev+sea)
+# view results
+results
+plot(results)
+# get 95% confidence interval
+boot.ci(results, type="bca")
+abline(v=boot.ci(results, type="bca"))
+b <- function(){
+sam <- sample(nrow(data), replace = TRUE) # draw a bootstrap sample
+m <- lm(temp~elev+sea,data=data[sam,]) # fit a linear regression model
+return(coef(m)) # return estimated coefficients. Use “[]” –syntax to extract specific model
+# coefficient
+}
+b
+b <- function(y,x,l,d){
+sam <- sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+m <- lm(y~x+l,data=d[sam,]) # fit a linear regression model
+return(coef(m)) # return estimated coefficients. Use “[]” –syntax to extract specific model
+# coefficient
+}
+b <- function(y,x,l,d){
+sam <- sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+m <- lm(y~x+l,data=d[sam,]) # fit a linear regression model
+return(coef(m)) # return estimated coefficients. Use “[]” –syntax to extract specific model
+# coefficient
+}
+b(y=temp, x=elev, l=sea, d=data)
+b <- function(y,x,l,d){
+sam <- sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+m <- lm(y~x+,data=d[sam,]) # fit a linear regression model
+return(summary(m)) # return estimated coefficients. Use “[]” –syntax to extract specific model
+# coefficient
+}
+b <- function(y,x,l,d){
+sam <- sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+m <- lm(y~x+,data=d[sam,]) # fit a linear regression model
+return(summary(m)) # return estimated coefficients. Use “[]” –syntax to extract specific model
+# coefficient
+}
+l
+l
+b <- function(y,x,l,d){
+sam <- sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+m <- lm(y~x+,data=d[sam,]) # fit a linear regression model
+return(summary(m)) # return estimated coefficients. Use “[]” –syntax to extract specific model
+# coefficient
+}
+b <- function(y,x,l,d){
+sam <- sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+m <- lm(y~x+l,data=d[sam,]) # fit a linear regression model
+return(coef(m)) # return estimated coefficients. Use “[]” –syntax to extract specific model
+# coefficient
+}
+b(y=temp, x=elev, l=sea, d=data)
+b <- function(y,x,d){
+sam <- sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+m <- lm(y~x,data=d[sam,]) # fit a linear regression model
+return(coef(m)) # return estimated coefficients. Use “[]” –syntax to extract specific model
+# coefficient
+}
+b(y=temp, x=elev+sea, d=data)
+b <- function(y,x,d){
+sam <- sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+m <- replicate(1000, expr=lm(y~x,data=d[sam,])) # fit a linear regression model
+return(coef(m)) # return estimated coefficients. Use “[]” –syntax to extract specific model
+# coefficient
+}
+b(y=temp, x=elev+sea, d=data)
+b(y=temp, x=elev+sea, d=data)
+b <- function(y,x,d){
+sam <- replicate(1000, expr=sample(nrow(d), replace = TRUE)) # draw a bootstrap sample
+m <- lm(y~x,data=d[sam,]) # fit a linear regression model
+return(coef(m)) # return estimated coefficients. Use “[]” –syntax to extract specific model
+# coefficient
+}
+b(y=temp, x=elev+sea, d=data)
+nn<-b(y=temp, x=elev+sea, d=data)
+b <- function(y,x,d){
+sam <- sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+m <- lm(y~x,data=d[sam,]) # fit a linear regression model
+return(replicate(1000, expr=coef(m))) # return estimated coefficients. Use “[]” –syntax to extract specific model
+# coefficient
+}
+nn<-b(y=temp, x=elev+sea, d=data)
+View(nn)
+View(nn)
+b <- function(y,x,d){
+sam <- sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+m <- lm(y~x,data=d[sam,]) # fit a linear regression model
+return(replicate(999, expr=coef(m))) # return estimated coefficients. Use “[]” –syntax to extract specific model
+# coefficient
+}
+nn[1]
+nn[0]
+nn[2]
+#boostrapping. replicate the sampling of the mean temperature for 999 times
+bsa<-replicate(999, expr=mean(sample(data$temp, replace = T)))
+hist(bsa)
+sam <- sample(nrow(d), replace = TRUE)
+sam <- sample(nrow(d), replace = TRUE)
+sam <- sample(nrow(data), replace = TRUE)
+m <- lm(y~x,data=d[sam,])
+m <- lm(y~x,data=data[sam,])
+View(m)
+View(m)
+sample(data$temp, replace = T)
+sam <- sample(nrow(data), replace = TRUE)
+m <- lm(y~x,data=data[sam,])
+View(m)
+length(sample(data$temp, replace = T))
+b <- function(y,x,d){
+sam <- sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+m <- (replicate(1000, expr=lm(y~x,data=d[sam,]))) # fit a linear regression model
+return(replicate(1000, expr=coef(m))) # return estimated coefficients. Use “[]” –syntax to extract specific model
+# coefficient
+}
+nn<-b(y=temp, x=elev+sea, d=data)
+View(nn)
+b <- function(y,x,d){
+sam <- sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+m <- (replicate(1000, expr=lm(y~x,data=d[sam,]))) # fit a linear regression model
+return( expr=coef(m)) # return estimated coefficients. Use “[]” –syntax to extract specific model
+# coefficient
+}
+nn<-b(y=temp, x=elev+sea, d=data)
+b <- function(y,x,d){
+sam <- sample(nrow(d$x[1]), replace = TRUE) # draw a bootstrap sample
+m <- (replicate(1000, expr=lm(y~x,data=d[sam,]))) # fit a linear regression model
+return( expr=coef(m)) # return estimated coefficients. Use “[]” –syntax to extract specific model
+# coefficient
+}
+nn<-b(y=temp, x=elev+sea, d=data)
+lm_tem<- lm(temp~ elev + sea, data= data)
+lm_tem<- lm(temp~ elev + sea, data= data)
+data<- read.csv("C:/Users/oyeda/Desktop/MODELLING_PHYSICAL_GEOGRAPHY/assignment2/Data-20171114/AirTemperatureData.csv", header=T, sep = ";")
+lm_tem<- lm(temp~ elev + sea, data= data)
+View(lm_tem)
+View(lm_tem)
+summary(lm_tem)
+coef(lm_tem)
+xx<-coef(lm_tem)
+xx[2]
+xx[3]
+xx[1]
+# 95 % confidence interval for estimated regression slope for elevation.
+#Plot the results as a
+# histogram with confidence intervals indicated as dashed lines. Save the figure.
+#You may use and
+# further modify the function below:
+#   b <- function(){
+#     sam <- sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+#     m <- lm(y~x,data=d[sam,]) # fit a linear regression model
+#     return(coef(m)) # return estimated coefficients. Use “[]” –syntax to extract specific model
+#     # coefficient
+sample(data$elev)
+lm_tem<- lm(temp~ sample(data$elev) + sea, data= data)
+summary(lm_tem)
+elev_sam<- replicate(1000, expr = sample(data$elev, replace = T))
+lm_tem<- lm(temp~  elev_sam + sea, data= data)
+summary(lm_tem)
+b <- function(y, x,d){
+sam <- replicate(1000, expr=sample(data[,c("elev", "sea"),], replace = TRUE)) # draw a bootstrap sample
+m <- lm(y~x,data=d[sam,]) # fit a linear regression model
+return(coef(m)) # return estimated coefficients. Use “[]” –syntax to extract specific model
+# coefficient
+}
+b(y=temp, x= elev+sea, d=data)
+b <- function(y, x,d){
+sam <- replicate(1000, expr=sample(nrow(d), replace = TRUE)) # draw a bootstrap sample
+m <- lm(y~x,data=d[sam,]) # fit a linear regression model
+return(coef(m)) # return estimated coefficients. Use “[]” –syntax to extract specific model
+# coefficient
+}
+b(y=temp, x= elev+sea, d=data)
+zz<-b(y=temp, x= elev+sea, d=data)
+zz<-b(y=temp, x= elev+sea, d=data)
+b(y=temp, x= elev+sea, d=data)
+b(y=temp, x= elev+sea, d=data)
+b(y=temp, x= elev+sea, d=data)
+b <- function(y, x,d){
+# draw a bootstrap sample
+m <- lm(y~x,data=d) # fit a linear regression model
+return(coef(m)) # return estimated coefficients. Use “[]” –syntax to extract specific model
+# coefficient
+}
+b(y=temp, x= elev+sea, d=data)
+b(y=temp, x= elev+sea, d=data)
+b(y=temp, x= elev+sea, d=data)
+b(y=temp, x= elev+sea, d=data)
+b(y=temp, x= elev+sea, d=data)
+b(y=temp, x= elev+sea, d=data)
+b(y=temp, x= elev+sea, d=data)
+b <- function(y, x,d){
+sam <- (expr=sample(nrow(d), replace = TRUE)) # draw a bootstrap sample
+m <- lm(y~x,data=d[sam,]) # fit a linear regression model
+return(coef(m)) # return estimated coefficients. Use “[]” –syntax to extract specific model
+# coefficient
+}
+b(y=temp, x= elev+sea, d=data)
+b(y=temp, x= elev+sea, d=data)
+b <- function(y, x,d){
+sam <- expr=sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+m <- replicate(1000, expr=lm(y~x,data=d[sam,])) # fit a linear regression model
+return(coef(m)) # return estimated coefficients. Use “[]” –syntax to extract specific model
+# coefficient
+}
+b(y=temp, x= elev+sea, d=data)
+b <- function(y, x,d){
+sam <- expr=sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+m <- replicate(1000, expr=lm(y~x,data=d[sam,])) # fit a linear regression model
+return(coef(m)) # return estimated coefficients. Use “[]” –syntax to extract specific model
+# coefficient
+}
+b <- function(y, x,d){
+sam <- expr=sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+m <- replicate(1000, expr=lm(y~x,data=d[sam,])) # fit a linear regression model
+return(coef(m)) # return estimated coefficients. Use “[]” –syntax to extract specific model
+# coefficient
+}
+b(y=temp, x= elev+sea, d=data)
+b <- function(y, x,d){
+sam <- expr=sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+m <- expr=lm(y~x,data=d[sam,]) # fit a linear regression model
+return(replicate(1000, coef(m))) # return estimated coefficients. Use “[]” –syntax to extract specific model
+# coefficient
+}
+b(y=temp, x= elev+sea, d=data)
+b <- function(y, x,d){
+sam <- expr=sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+m <- expr=lm(y~x,data=d[sam,]) # fit a linear regression model
+return(coef(m)) # return estimated coefficients. Use “[]” –syntax to extract specific model
+# coefficient
+}
+b(y=temp, x= elev+sea, d=data)
+b <- function(y, x,d){
+sam <-sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+m <- expr=lm(y~x,data=d[sam,]) # fit a linear regression model
+return(replicate(1000, coef(m))) # return estimated coefficients. Use “[]” –syntax to extract specific model
+# coefficient
+}
+b(y=temp, x= elev+sea, d=data)
+b <- function(y, x,d){
+sam <-sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+m <- lm(y~x,data=d[sam,]) # fit a linear regression model
+return(replicate(1000, coef(m))) # return estimated coefficients. Use “[]” –syntax to extract specific model
+# coefficient
+}
+b(y=temp, x= elev+sea, d=data)
+b(y=temp, x= elev+sea, d=data)
+b(y=temp, x= elev+sea, d=data)
+b <- function(y, x,d){
+sam <-sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+m <- lm(y~x,data=d[sam,]) # fit a linear regression model
+return(replicate(1000, expr=coef(m))) # return estimated coefficients. Use “[]” –syntax to extract specific model
+# coefficient
+}
+b(y=temp, x= elev+sea, d=data)
+b <- function(y, x,d){
+sam <-sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+m <- replicate(1000, expr=lm(y~x,data=d[sam,])) # fit a linear regression model
+return(coef(m)) # return estimated coefficients. Use “[]” –syntax to extract specific model
+# coefficient
+}
+b(y=temp, x= elev+sea, d=data)
+elev_sam<- replicate(1000, expr = sample(data$elev, replace = T))
+lm_tem<- lm(temp~  elev_sam + sea, data= data)
+summary(lm_tem)
+xx<-coef(lm_tem)
+xx[1]
+b <- function(y, x,d){
+sam <-sample(nrow(d), replace = TRUE) # draw a bootstrap sample
+m <- replicate(1000, expr=lm(y~x,data=d[sam,])) # fit a linear regression model
+return(coef(m)) # return estimated coefficients. Use “[]” –syntax to extract specific model
+# coefficient
+}
+b(y=temp, x= elev+sea, d=data)
+b <- function(y, x,d){
+sam <-replicate(1000, expr=sample(nrow(d), replace = TRUE)) # draw a bootstrap sample
+m <- lm(y~x,data=d[sam,]) # fit a linear regression model
+return(coef(m)) # return estimated coefficients. Use “[]” –syntax to extract specific model
+# coefficient
+}
+b(y=temp, x= elev+sea, d=data)
+bb<-(y=temp, x= elev+sea, d=data)
+nl<-b(y=temp, x= elev+sea, d=data)
+xx
+# Tips for LOOCV:
+#   - to define the for-loop, you need to know the number of rows in the data; this can be
+# obtained using a function nrow()
+# - at each iteration (=loop-round), you need to set aside one row of the whole data for
+# evaluation in turn; other are used for fitting the model
+# - you need to collect the predicted values of each iteration round to a result vector; before
+# initiating the for-loop, create empty vector for this purpose
+# - inside the loop use c() –function to collect the predicted values to the result vector
+nrow(data)
+vv<-c()
+i in nrow(data)
+for i in 1:nrow(data){
+print(i)}
+for (i in 1:nrow(data)){
+print(i)}
+for (i in 1:nrow(data)){
+aa[i]<- lm(temp~elev+I(elev^2), data = data[nrow(data)-1,])
+vv<-cbind(vv, predict(aa))
+}
+aa[i]<- lm(temp~elev+I(elev^2), data = data[nrow(data)-1,])
+aa[i]<- lm(temp~elev+I(elev^2), data = data[nrow(data)-1,])
+for (i in 1:nrow(data)){
+aa<- lm(temp~elev+I(elev^2), data = data[nrow(data)-1,])
+vv<-cbind(vv, predict(aa))
+}
+View(vv)
+View(vv)
+vv<-c()
+for (i in 1:nrow(data)){
+aa<- lm(temp~elev+I(elev^2), data = data[nrow(data)-i,])
+vv<-cbind(vv, predict(aa))
+}
+for (i in 1:nrow(data)){
+aa[i]<- lm(temp~elev+I(elev^2), data = data[nrow(data)-i,])
+vv<-cbind(vv, predict(aa))
+}
+vv<-c()
+for (i in 1:nrow(data)){
+aa[i]<- lm(temp~elev+I(elev^2), data = data[nrow(data)-1,])
+vv<-cbind(vv, predict(aa))
+}
+vv<-c()
+for (i in 1:nrow(data)){
+aa[i]<- lm(temp~elev+I(elev^2), data = data)
+vv<-cbind(vv, predict(aa))
+}
+vv<-c()
+for (i in 1:nrow(data)){
+aa<- lm(temp~elev+I(elev^2), data = data)
+vv<-cbind(vv, predict(aa))
+}
+View(vv)
+View(vv)
+vv<-c()
+for (i in 1:nrow(data)){
+aa<- lm(temp~elev+I(elev^2), data = data)
+new<- data.frame(elev=seq(0,100, 1))
+p<- predict(aa, new)
+vv<-c(vv, p)
+}
+vv
+hist(vv)
+hist(vv)
+hist(vv)
+hist(vv)
+plot(vv)
+hist(vv)
+aa<- lm(temp~elev+I(elev^2), data = data)
+new<- data.frame(elev=seq(0,100, 1))
+p<- predict(aa, new)
+p
+vv<-c()
+for (i in 1:nrow(data)){
+aa<- lm(temp~elev+I(elev^2), data = data[nrow(data),])
+new<- data.frame(elev=seq(0,100, 1))
+p<- predict(aa, new)
+vv<-c(vv, p)
+}
+nrow(data)
+data[nrow(data),]
+data[1:nrow(data),]
+data[1:nrow(data)-1,]
+vv<-c()
+for (i in 1:nrow(data)){
+aa<- lm(temp~elev+I(elev^2), data = data[1:nrow(data)-1,])
+new<- data.frame(elev=seq(0,100, 1))
+p<- predict(aa, new)
+vv<-c(vv, p)
+}
+hist(vv)
+vv<-c()
+for (i in 1:nrow(data)){
+aa<- lm(temp~elev+I(elev^2), data = data[1:nrow(data)-1,])
+new<- data.frame(elev=seq(0,100, 1))
+p<- predict(aa, new)
+vv<-c(p)
+}
+hist(vv)
+vv<-c()
+for (i in 1:nrow(data)){
+aa[i]<- lm(temp~elev+I(elev^2), data = data[1:nrow(data)-1,])
+new<- data.frame(elev=seq(0,100, 1))
+p<- predict(aa, new)
+vv<-c(p)
+}
+vv<-c()
+for (i in 1:nrow(data)){
+aa[i]<- lm(temp~elev+I(elev^2), data = data[1:nrow(data)-1,])
+new<- data.frame(elev=seq(0,100, 1))
+p<- predict(aa[i], new)
+vv<-c(p)
+}
+vv<-c()
+for (i in 1:nrow(data)){
+aa[i]<- lm(temp~elev+I(elev^2), data = data[1:nrow(data)-1,])
+new[i]<- data.frame(elev=seq(0,100, 1))
+p[i]<- predict(aa, new)
+vv<-c(p)
+}
+hist(vv)
+vv<-c()
+for (i in 1:nrow(data)){
+aa[i]<- lm(temp~elev+I(elev^2), data = data[1:nrow(data)-1,])
+new<- data.frame(elev=seq(0,100, 1))
+p[i]<- predict(aa, new)
+vv<-c(p)
+}
+hist(vv)
